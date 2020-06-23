@@ -5,18 +5,22 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
+        - HOSTNAME
         - PORT
         - MAGIC
         - SHARED_KEY
     image: beer-wars/subspace
     container_name: subspace
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
     networks:
       - subspace
     ports:
+      - '8355:8355'
       - '139:139'
       - '445:445'
-      - '111:111'
-      - '2049:2049'
 networks:
   subspace:
     driver: macvlan

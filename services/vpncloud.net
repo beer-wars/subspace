@@ -9,7 +9,7 @@
 
 # The port number on which to listen for data.
 # Note: Every VPN needs a different port number.
-port: %port%
+listen: %port%
 
 # Address of a peer to connect to. The address should be in the form
 # `addr:port`. If the node is not started, the connection will be retried
@@ -67,7 +67,7 @@ subnets:
 # parameter to `sh -c`) when the device has been created to configure it.
 # The name of the allocated device will be available via the environment
 # variable `IFNAME`.
-ifup: "ifconfig $IFNAME 10.83.55.10/24 mtu 1400"
+ifup: "ifconfig $IFNAME 10.83.55.%ipoctet%/24 mtu 1400"
 
 # A command to bring down the network interface. The command will be run (as
 # parameter to `sh -c`) to remove any configuration from the device.
