@@ -1,0 +1,27 @@
+version: "3.1"
+services:
+  subspace:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - PORT
+        - MAGIC
+        - SHARED_KEY
+    image: beer-wars/subspace
+    container_name: subspace
+    networks:
+      - subspace
+    ports:
+      - '139:139'
+      - '445:445'
+      - '111:111'
+      - '2049:2049'
+networks:
+  subspace:
+    driver: macvlan
+    driver_opts:
+      parent: ens160
+    ipam:
+      config:
+        - subnet: 172.83.55.0/30
